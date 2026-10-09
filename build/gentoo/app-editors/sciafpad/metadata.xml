@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>noreply@example.com</email>
+		<name>einfair</name>
+	</maintainer>
+	<longdescription lang="en">
+		sciafpad is a minimal GTK4 text editor based on the bugaevc/scintilla
+		GTK4 port. It aims to be as simple as Leafpad but uses Scintilla as
+		the editing engine instead of GtkTextView.
+	</longdescription>
+	<upstream>
+		<remote-id type="github">einfair/sciafpad</remote-id>
+	</upstream>
+</pkgmetadata>

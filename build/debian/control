@@ -1,0 +1,29 @@
+Source: sciafpad
+Section: editors
+Priority: optional
+Maintainer: einfair <noreply@example.com>
+Build-Depends:
+ debhelper-compat (= 13),
+ autoconf,
+ automake,
+ libtool,
+ pkg-config,
+ libgtk-4-dev (>= 4.10),
+ valac,
+ gobject-introspection,
+ blueprint-compiler,
+ git
+Standards-Version: 4.6.2
+Homepage: https://github.com/einfair/sciafpad
+Rules-Requires-Root: no
+
+Package: sciafpad
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: A minimal GTK4 text editor based on Scintilla
+ sciafpad is a simple text editor built on top of the
+ bugaevc/scintilla GTK4 port. It aims to be as simple as Leafpad
+ but uses Scintilla as the editing engine instead of GtkTextView.
+ .
+ Features: open / save / save as, undo / redo, cut / copy / paste,
+ and an about dialog.

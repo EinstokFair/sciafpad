@@ -1,4 +1,4 @@
-# Autotools generated
+# Autotools generated (in-source)
 Makefile
 Makefile.in
 aclocal.m4
@@ -25,12 +25,6 @@ sciafpad
 src/.deps/
 src/.dirstamp
 
-# CMake leftovers
-build/
-CMakeLists.txt
-CMakeCache.txt
-cmake_install.cmake
-
 # Generated changelog
 ChangeLog
 
@@ -40,3 +34,12 @@ ChangeLog
 
 # Test artifacts
 untitled.txt
+
+# Build directory: ignore everything by default
+build/*
+
+# ...except packaging recipes
+!build/gentoo/
+!build/debian/
+!build/gentoo/**
+!build/debian/**
