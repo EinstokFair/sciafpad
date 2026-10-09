@@ -1,0 +1,42 @@
+# Autotools generated
+Makefile
+Makefile.in
+aclocal.m4
+autom4te.cache/
+config.log
+config.status
+configure
+configure~
+depcomp
+install-sh
+missing
+compile
+config.guess
+config.sub
+*.tar.gz
+*.tar.xz
+
+# Build artifacts
+*.o
+*.lo
+*.la
+*.so
+sciafpad
+src/.deps/
+src/.dirstamp
+
+# CMake leftovers
+build/
+CMakeLists.txt
+CMakeCache.txt
+cmake_install.cmake
+
+# Generated changelog
+ChangeLog
+
+# Editor backups
+*~
+*.swp
+
+# Test artifacts
+untitled.txt

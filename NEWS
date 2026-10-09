@@ -1,0 +1,10 @@
+sciafpad 0.1
+============
+
+Initial release.
+
+- GTK4 window with menu bar
+- Scintilla-based editor widget (bugaevc/scintilla port)
+- File: Open, Save, Save As, Quit
+- Edit: Undo, Redo, Cut, Copy, Paste
+- About dialog
