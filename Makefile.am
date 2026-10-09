@@ -17,7 +17,7 @@ sciafpad_LDFLAGS = \
     -Wl,-rpath,$(SCINTILLA_ROOT)/bin
 
 docdir = $(datadir)/doc/sciafpad
-dist_doc_DATA = README.md COPYING AUTHORS NEWS ChangeLog
+dist_doc_DATA = README.md COPYING AUTHORS NEWS ChangeLog GENTOO.md DEBIAN.md
 
 ChangeLog:
 	$(top_srcdir)/tools/gen-changelog.sh $@
