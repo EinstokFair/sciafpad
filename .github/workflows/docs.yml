@@ -36,19 +36,61 @@ jobs:
           STRIPPED="${TAG#v}"
           DEST="v/${STRIPPED}"
           echo "dest=${DEST}" >> $GITHUB_OUTPUT
+          echo "version=${STRIPPED}" >> $GITHUB_OUTPUT
           echo "Extracted: ${DEST}"
 
       - name: Generate docs
         working-directory: ./doc
         run: doxygen Doxyfile
 
-      - name: Copy screenshots
-        run: cp doc/screenshot*.png doc/build/html/
+      - name: Reorganize output for gh-pages
+        working-directory: ./doc/build/html
+        run: |
+          VERSION="${{ steps.ver.outputs.version }}"
+          mkdir -p "v/${VERSION}"
+          find . -maxdepth 1 -mindepth 1 ! -name "v" -exec mv {} "v/${VERSION}/" \;
+          cp ../../screenshot*.png "v/${VERSION}/"
+          cat > index.html <<HTMLEOF
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+          <meta charset="utf-8">
+          <title>sciafpad</title>
+          <style>
+            body { font-family: sans-serif; max-width: 800px; margin: 2em auto; padding: 0 1em; }
+            h1 { color: #26a269; }
+            .screenshot { max-width: 100%; border: 1px solid #ccc; margin: 1em 0; }
+            .links a { display: inline-block; margin-right: 1em; }
+          </style>
+          </head>
+          <body>
+          <h1>sciafpad</h1>
+          <p>
+            A minimal GTK4 text editor built on top of
+            <a href="https://www.scintilla.org/">Scintilla</a>, specifically the
+            <a href="https://github.com/bugaevc/scintilla">bugaevc/scintilla</a> GTK4 port.
+          </p>
+          <h2>Screenshots</h2>
+          <img class="screenshot" src="v/${VERSION}/screenshot1.png" alt="File menu">
+          <img class="screenshot" src="v/${VERSION}/screenshot2.png" alt="Edit menu">
+          <h2>Documentation</h2>
+          <p>API documentation for the latest release:
+            <a href="v/${VERSION}/">sciafpad v${VERSION}</a>.</p>
+          <h2>Source code</h2>
+          <div class="links">
+            <a href="https://github.com/EinstokFair/sciafpad">GitHub repository</a>
+            <a href="https://github.com/EinstokFair/sciafpad/releases">Releases</a>
+            <a href="https://github.com/EinstokFair/sciafpad/issues">Issues</a>
+          </div>
+          <h2>License</h2>
+          <p>GPL-3.0-or-later. See <a href="https://github.com/EinstokFair/sciafpad/blob/main/COPYING">COPYING</a> for details.</p>
+          </body>
+          </html>
+          HTMLEOF
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./doc/build/html
-          destination_dir: ${{ steps.ver.outputs.dest }}
           keep_files: true
