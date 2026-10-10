@@ -1,5 +1,10 @@
 # Building sciafpad on Gentoo
 
+> **Note:** This repository ships an ebuild for this package:
+> [`build/gentoo/app-editors/sciafpad/sciafpad-0.1.ebuild`](build/gentoo/app-editors/sciafpad/sciafpad-0.1.ebuild).
+> It can be used directly with a local overlay, or copied into your own.
+
+
 ## Dependencies
 
 Install the required system packages:

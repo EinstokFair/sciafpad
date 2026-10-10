@@ -1,4 +1,4 @@
-![Build](https://github.com/EinstokFair/sciafpad/actions/workflows/build.yml/badge.svg)
+[![Build](https://github.com/EinstokFair/sciafpad/actions/workflows/build.yml/badge.svg)](https://github.com/EinstokFair/sciafpad/actions/workflows/build.yml)
 
 # sciafpad
 
