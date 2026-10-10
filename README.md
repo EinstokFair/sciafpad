@@ -1,3 +1,5 @@
+![Build](https://github.com/EinstokFair/sciafpad/actions/workflows/build.yml/badge.svg)
+
 # sciafpad
 
 A minimal GTK4 text editor built on top of [Scintilla](https://www.scintilla.org/),
