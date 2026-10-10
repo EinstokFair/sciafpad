@@ -38,3 +38,9 @@ EXTRA_DIST += \
 	build/debian/copyright \
 	build/debian/sciafpad.install \
 	build/debian/source/format
+
+# Strip volatile POT-Creation-Date from po/en.po after build
+all-local:
+	@if [ -f po/en.po ]; then \
+	    sed -i '/^"POT-Creation-Date:/d' po/en.po; \
+	fi
