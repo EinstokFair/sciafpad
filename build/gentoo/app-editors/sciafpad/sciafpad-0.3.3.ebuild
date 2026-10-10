@@ -14,48 +14,20 @@ KEYWORDS="~amd64 ~arm64 ~x86"
 RDEPEND="
 	>=gui-libs/gtk-4.10:4
 	>=dev-libs/glib-2.66:2
+	dev-libs/scintilla-gtk4-bugaevc
 "
-
 DEPEND="${RDEPEND}"
-
 BDEPEND="
 	dev-build/autoconf
 	dev-build/automake
 	dev-build/libtool
 	dev-util/pkgconf
-	dev-lang/vala
-	dev-libs/gobject-introspection
-	dev-util/blueprint-compiler
-	dev-vcs/git
 "
 
-src_unpack() {
-	default
-
-	git clone https://github.com/bugaevc/scintilla.git \
-		"${WORKDIR}/scintilla-bugaevc" || die
-	pushd "${WORKDIR}/scintilla-bugaevc/gtk4" >/dev/null || die
-
-	# GIR-цель падает с SIGSEGV на новых GTK4 (g-ir-scanner).
-	# Для sciafpad (C++) GIR не нужен — убираем цели GIR, vapigen, demo.
-	sed -i 's/^all:.*/all: libscintilla.so/' makefile
-	sed -i 's/^demo:.*/demo: libscintilla.so/' makefile
-	sed -i '/Scintilla-5\.gir/d' makefile
-	sed -i '/g-ir-scanner/d' makefile
-	sed -i '/vapigen/d' makefile
-	sed -i '/ScintillaDemo/d' makefile
-
-	make libscintilla.so || die
-	popd >/dev/null || die
-}
-
 src_configure() {
-	econf SCINTILLA_ROOT="${WORKDIR}/scintilla-bugaevc"
+	econf SCINTILLA_ROOT="${EPREFIX}/usr"
 }
 
 src_install() {
 	default
-
-	insinto /usr/lib/sciafpad
-	doins "${WORKDIR}/scintilla-bugaevc/bin/libscintilla.so"
 }

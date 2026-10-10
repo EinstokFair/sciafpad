@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>you@example.com</email>
+		<name>Toliman</name>
+	</maintainer>
+	<longdescription>
+		GTK4 port of the Scintilla text editor widget, from the
+		bugaevc fork. Used by app-editors/sciafpad.
+	</longdescription>
+	<upstream>
+		<remote-id type="github">bugaevc/scintilla</remote-id>
+	</upstream>
+</pkgmetadata>
