@@ -1,0 +1,3 @@
+usr/lib/*/libscintilla.so
+usr/lib/*/pkgconfig/scintilla-gtk4-bugaevc.pc
+usr/include/scintilla-gtk4-bugaevc/

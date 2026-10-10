@@ -38,26 +38,46 @@ untitled.txt
 # Build directory: ignore everything by default
 build/*
 
-# ...except packaging recipes
+# ...except packaging recipes (kept in git)
 !build/gentoo/
 !build/debian/
 !build/gentoo/**
 !build/debian/**
 
+# ...but ignore local-only helpers and build artifacts
+build/build-with-secrets.sh
+build/debian/*/upper/
+build/debian/*/upper.work/
+build/debian/*/src/
+build/debian/*/*.deb
+build/debian/*/*.buildinfo
+build/debian/*/*.changes
+build/debian/*/*.dsc
+build/debian/*/debian/files
+build/debian/*/debian/tmp/
+build/debian/*/debian/.debhelper/
+build/debian/*/debian/*.substvars
+build/debian/*/debian/*.debhelper.log
+
+# Generated at Debian build time
+po/POTFILES
+
 # gettext generated (autopoint / gettextize)
 ABOUT-NLS
 config.rpath
 m4/
-po/Makefile.in.in
-po/Makevars.template
-po/Rules-quot
-po/boldquot.sed
-po/en@boldquot.header
-po/en@quot.header
-po/insert-header.sed
-po/quot.sed
-po/remove-potcdate.sed
 *.gmo
 *.pot
 stamp-po
 doc/build/
+
+# Stray dpkg-buildpackage artifacts in the source root
+/debian/
+/lib
+
+# gettext generated
+po/Makefile.in
+po/Makefile
+po/*.gmo
+po/stamp-po
+po/*.po.new

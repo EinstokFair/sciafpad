@@ -1,0 +1,11 @@
+prefix=@PREFIX@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include/scintilla-gtk4-bugaevc
+
+Name: ScintillaWidget (bugaevc GTK4 fork of Scintilla)
+Description: GTK4 Scintilla widget (ScintillaWidget)
+Version: 5.0.0
+Requires: gtk4 >= 4.10
+Libs: -L${libdir} -lscintilla
+Cflags: -I${includedir}

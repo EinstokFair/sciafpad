@@ -1,0 +1,12 @@
+diff --git a/gtk4/makefile b/gtk4/makefile
+index e2ea4d5b..bf33d13d 100644
+--- a/gtk4/makefile
++++ b/gtk4/makefile
+@@ -43,6 +43,7 @@ endif
+ 
+ VERSION_SCRIPT = Versions.ld
+ LDFLAGS += -shared -Wl,--no-undefined -Wl,--version-script=$(VERSION_SCRIPT)
++LDFLAGS += -Wl,-soname,libscintilla.so.5
+ 
+ # Take care of changing Unix style '/' directory separator to '\' on Windows
+ normalize = $(if $(windir),$(subst /,\,$1),$1)

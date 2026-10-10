@@ -3,9 +3,12 @@
 
 EAPI=8
 
+inherit vcs-snapshot
+
 DESCRIPTION="A minimal GTK4 text editor based on the bugaevc/scintilla port"
 HOMEPAGE="https://github.com/EinstokFair/sciafpad"
-SRC_URI="https://github.com/EinstokFair/sciafpad/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/EinstokFair/sciafpad/releases/download/v${PV}/sciafpad-${PV}.tar.xz
+	-> sciafpad-${PV}.tar.xz"
 
 LICENSE="GPL-3+"
 SLOT="0"

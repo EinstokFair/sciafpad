@@ -5,3 +5,6 @@ XGETTEXT_OPTIONS = --keyword=_ --keyword=N_ --from-code=UTF-8
 COPYRIGHT_HOLDER = EinstokFair
 MSGID_BUGS_ADDRESS = noreply@example.com
 EXTRA_LOCALE_CATEGORIES =
+
+# Use our wrapper to strip volatile POT-Creation-Date from generated .po files.
+MSGMERGE = $(CURDIR)/../tools/msgmerge-wrapper.sh

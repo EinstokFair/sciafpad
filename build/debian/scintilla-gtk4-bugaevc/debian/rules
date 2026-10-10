@@ -1,0 +1,52 @@
+#!/usr/bin/make -f
+
+include /usr/share/dpkg/default.mk
+
+VERSION_MAJOR := 5
+VERSION_FULL  := 5.0.0
+LIBNAME       := libscintilla.so
+SONAME        := $(LIBNAME).$(VERSION_MAJOR)
+REALNAME      := $(LIBNAME).$(VERSION_FULL)
+
+%:
+	dh $@
+
+override_dh_auto_clean:
+	cd gtk4 && $(MAKE) clean || true
+
+override_dh_auto_configure:
+	:
+
+override_dh_auto_build:
+	cd gtk4 && $(MAKE) shared
+
+override_dh_auto_test:
+	:
+
+override_dh_auto_install:
+	# 1. .so
+	install -d debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)
+	install -m 0755 bin/$(LIBNAME) \
+		debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/$(REALNAME)
+	ln -sf $(REALNAME) debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/$(SONAME)
+	ln -sf $(REALNAME) debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/$(LIBNAME)
+
+	# 2. headers
+	install -d debian/tmp/usr/include/scintilla-gtk4-bugaevc
+	install -m 0644 include/*.h \
+		debian/tmp/usr/include/scintilla-gtk4-bugaevc/
+	install -m 0644 gtk4/*.h \
+		debian/tmp/usr/include/scintilla-gtk4-bugaevc/
+
+	# 3. pkg-config
+	install -d debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/pkgconfig
+	sed -e 's|@PREFIX@|/usr|g' \
+	    -e 's|@VERSION@|$(VERSION_FULL)|g' \
+	    debian/scintilla-gtk4-bugaevc.pc.in \
+	    > debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/pkgconfig/scintilla-gtk4-bugaevc.pc
+
+override_dh_missing:
+	dh_missing --list-missing
+
+override_dh_strip:
+	dh_strip --dbgsym-migration='libscintilla-gtk4-bugaevc-5-dbgsym (>= 5.0.0~20251114-1)'

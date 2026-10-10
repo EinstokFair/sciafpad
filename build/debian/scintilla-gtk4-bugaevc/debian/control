@@ -1,0 +1,40 @@
+Source: scintilla-gtk4-bugaevc
+Section: libs
+Priority: optional
+Maintainer: Toliman <you@example.com>
+Build-Depends:
+ debhelper-compat (= 13),
+ pkg-config,
+ libgtk-4-dev (>= 4.10),
+ git,
+ ca-certificates,
+Standards-Version: 4.6.2
+Homepage: https://github.com/bugaevc/scintilla
+Vcs-Git: https://github.com/EinstokFair/sciafpad.git
+Vcs-Browser: https://github.com/EinstokFair/sciafpad
+
+Package: libscintilla-gtk4-bugaevc-5
+Architecture: any
+Multi-Arch: same
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: ScintillaWidget - bugaevc GTK4 fork of Scintilla (runtime)
+ The ScintillaWidget control is a GTK4 port of the Scintilla text
+ editor widget, from the bugaevc fork of Scintilla.
+ .
+ This package contains the shared library.
+
+Package: libscintilla-gtk4-bugaevc-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends:
+ libscintilla-gtk4-bugaevc-5 (= ${binary:Version}),
+ ${misc:Depends},
+Description: ScintillaWidget - bugaevc GTK4 fork of Scintilla (development)
+ The ScintillaWidget control is a GTK4 port of the Scintilla text
+ editor widget, from the bugaevc fork of Scintilla.
+ .
+ This package contains the development files: headers, pkg-config
+ metadata, and the unversioned shared library symlink.

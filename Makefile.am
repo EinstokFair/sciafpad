@@ -13,7 +13,9 @@ sciafpad_LDADD = \
     $(SCINTILLA_LIBS) \
     $(LIBINTL)
 
-EXTRA_DIST = tools/gen-changelog.sh
+EXTRA_DIST = \
+    tools/gen-changelog.sh \
+    tools/msgmerge-wrapper.sh
 
 docdir = $(datadir)/doc/sciafpad
 dist_doc_DATA = README.md COPYING AUTHORS NEWS ChangeLog GENTOO.md DEBIAN.md
@@ -22,17 +24,9 @@ ChangeLog:
 	$(top_srcdir)/tools/gen-changelog.sh $@
 
 dist-hook: ChangeLog
-
-# Packaging recipes
-EXTRA_DIST += \
-	build/gentoo/app-editors/sciafpad/sciafpad-0.1.ebuild \
-	build/gentoo/app-editors/sciafpad/metadata.xml \
-	build/debian/control \
-	build/debian/rules \
-	build/debian/changelog \
-	build/debian/copyright \
-	build/debian/sciafpad.install \
-	build/debian/source/format
+	@if [ -f "$(distdir)/po/en.po" ]; then \
+	    sed -i '/^"POT-Creation-Date:/d' "$(distdir)/po/en.po"; \
+	fi
 
 # Strip volatile POT-Creation-Date from po/en.po after build
 all-local:
