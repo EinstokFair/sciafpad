@@ -12,7 +12,7 @@ Install the required system packages:
     emerge --ask gui-libs/gtk
     emerge --ask dev-build/autoconf
     emerge --ask dev-build/automake
-    emerge --ask sys-devel/libtool
+    emerge --ask dev-build/libtool
     emerge --ask dev-util/pkgconf
 
 ## Building bugaevc/scintilla

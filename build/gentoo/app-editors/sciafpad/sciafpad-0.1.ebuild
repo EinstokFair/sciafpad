@@ -21,8 +21,12 @@ DEPEND="${RDEPEND}"
 BDEPEND="
 	dev-build/autoconf
 	dev-build/automake
-	sys-devel/libtool
+	dev-build/libtool
 	dev-util/pkgconf
+	dev-lang/vala
+	dev-libs/gobject-introspection
+	dev-util/blueprint-compiler
+	dev-vcs/git
 "
 
 src_unpack() {
