@@ -45,7 +45,8 @@ jobs:
       - name: Run distcheck
         run: |
           cd build/autotools
-          make distcheck
+          make distcheck \
+            DISTCHECK_CONFIGURE_FLAGS="SCINTILLA_ROOT=$HOME/scintilla-bugaevc"
 
       - name: Upload tarball
         uses: actions/upload-artifact@v4
