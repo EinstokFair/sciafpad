@@ -1,4 +1,4 @@
-AC_INIT([sciafpad], [0.3.2], [you@example.com])
+AC_INIT([sciafpad], [0.3.3], [you@example.com])
 AM_INIT_AUTOMAKE([foreign subdir-objects dist-xz no-dist-gzip])
 AC_PROG_CC
 AC_PROG_CXX
