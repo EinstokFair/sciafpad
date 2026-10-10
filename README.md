@@ -68,3 +68,8 @@ GPL-3.0-or-later. See `COPYING` for details.
 
 - [Gentoo](GENTOO.md) — ebuild included, instructions for local overlay
 - [Debian/Ubuntu](DEBIAN.md) — debian/ directory included
+
+## Documentation
+
+API documentation is available at
+<https://einstokfair.github.io/sciafpad/v/0.2/>.
