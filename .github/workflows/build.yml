@@ -22,7 +22,7 @@ jobs:
             autoconf automake libtool pkg-config \
             libgtk-4-dev \
             valac gobject-introspection blueprint-compiler \
-            git xz-utils
+            git xz-utils gettext
 
       - name: Build bugaevc/scintilla
         run: |
