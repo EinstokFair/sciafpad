@@ -60,3 +60,4 @@ po/remove-potcdate.sed
 *.gmo
 *.pot
 stamp-po
+doc/build/

@@ -1,0 +1,54 @@
+name: Deploy docs
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Doxygen
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen graphviz
+
+      - name: Extract version for destination
+        id: ver
+        run: |
+          TAG="${{ github.ref_name }}"
+          if [[ ! "$TAG" =~ ^v[0-9]+(\.[0-9]+)*(-[A-Za-z0-9._-]+)?$ ]]; then
+            echo "error: tag '$TAG' does not match required format: vN[.N...][-suffix]" >&2
+            exit 1
+          fi
+          if [[ "$TAG" == *"--"* ]]; then
+            echo "error: double dash in tag '$TAG' is not allowed" >&2
+            exit 1
+          fi
+          STRIPPED="${TAG#v}"
+          DEST="v/${STRIPPED}"
+          echo "dest=${DEST}" >> $GITHUB_OUTPUT
+          echo "Extracted: ${DEST}"
+
+      - name: Generate docs
+        working-directory: ./doc
+        run: doxygen Doxyfile
+
+      - name: Copy screenshots
+        run: cp doc/screenshot*.png doc/build/html/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./doc/build/html
+          destination_dir: ${{ steps.ver.outputs.dest }}
+          keep_files: true
