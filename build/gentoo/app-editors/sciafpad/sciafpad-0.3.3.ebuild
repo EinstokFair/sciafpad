@@ -35,7 +35,17 @@ src_unpack() {
 	git clone https://github.com/bugaevc/scintilla.git \
 		"${WORKDIR}/scintilla-bugaevc" || die
 	pushd "${WORKDIR}/scintilla-bugaevc/gtk4" >/dev/null || die
-	make demo || die
+
+	# GIR-цель падает с SIGSEGV на новых GTK4 (g-ir-scanner).
+	# Для sciafpad (C++) GIR не нужен — убираем цели GIR, vapigen, demo.
+	sed -i 's/^all:.*/all: libscintilla.so/' makefile
+	sed -i 's/^demo:.*/demo: libscintilla.so/' makefile
+	sed -i '/Scintilla-5\.gir/d' makefile
+	sed -i '/g-ir-scanner/d' makefile
+	sed -i '/vapigen/d' makefile
+	sed -i '/ScintillaDemo/d' makefile
+
+	make libscintilla.so || die
 	popd >/dev/null || die
 }
 
