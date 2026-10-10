@@ -14,6 +14,9 @@ Install the required system packages:
     emerge --ask dev-build/automake
     emerge --ask dev-build/libtool
     emerge --ask dev-util/pkgconf
+    emerge --ask dev-lang/vala
+    emerge --ask dev-libs/gobject-introspection
+    emerge --ask dev-util/blueprint-compiler
 
 ## Building bugaevc/scintilla
 
