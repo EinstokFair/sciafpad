@@ -63,3 +63,8 @@ By default installs to `/usr/local`. Use `--prefix` to change:
 ## License
 
 GPL-3.0-or-later. See `COPYING` for details.
+
+## Packaging
+
+- [Gentoo](GENTOO.md) — ebuild included, instructions for local overlay
+- [Debian/Ubuntu](DEBIAN.md) — debian/ directory included
