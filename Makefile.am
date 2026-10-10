@@ -5,18 +5,13 @@ sciafpad_SOURCES = src/main.cpp
 
 sciafpad_CPPFLAGS = \
     $(GTK4_CFLAGS) \
-    -DLOCALEDIR=\"$(localedir)\" \
-    -I$(SCINTILLA_ROOT)/gtk4 \
-    -I$(SCINTILLA_ROOT)/include
+    $(SCINTILLA_CFLAGS) \
+    -DLOCALEDIR=\"$(localedir)\"
 
 sciafpad_LDADD = \
     $(GTK4_LIBS) \
-    $(LIBINTL) \
-    -L$(SCINTILLA_ROOT)/bin \
-    -lscintilla
-
-sciafpad_LDFLAGS = \
-    -Wl,-rpath,$(SCINTILLA_ROOT)/bin
+    $(SCINTILLA_LIBS) \
+    $(LIBINTL)
 
 EXTRA_DIST = tools/gen-changelog.sh
 

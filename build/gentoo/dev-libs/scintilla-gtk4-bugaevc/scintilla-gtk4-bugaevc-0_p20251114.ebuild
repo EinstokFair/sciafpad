@@ -3,8 +3,6 @@
 
 EAPI=8
 
-# bugaevc/scintilla, зафиксированный коммит, который использует sciafpad.
-# Обновление: заменить SHA1 здесь, обновить PV (0_pYYYYMMDD) и Manifest.
 SCINTILLA_SHA="3ba9b8f09851b60180ce57ee908c6eb57c751368"
 
 DESCRIPTION="GTK4 Scintilla widget (bugaevc fork), used by sciafpad"
@@ -39,4 +37,11 @@ src_compile() {
 src_install() {
 	cd "${S}/gtk4" || die
 	emake DESTDIR="${D}" PREFIX="${EPREFIX}/usr" install
+
+	# pkg-config файл
+	sed "s|@PREFIX@|${EPREFIX}/usr|g" \
+		"${FILESDIR}/scintilla-gtk4.pc.in" \
+		> "${T}/scintilla-gtk4.pc" || die
+	insinto "/usr/$(get_libdir)/pkgconfig"
+	doins "${T}/scintilla-gtk4.pc"
 }

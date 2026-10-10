@@ -23,11 +23,3 @@ BDEPEND="
 	dev-build/libtool
 	dev-util/pkgconf
 "
-
-src_configure() {
-	econf SCINTILLA_ROOT="${EPREFIX}/usr"
-}
-
-src_install() {
-	default
-}
