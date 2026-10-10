@@ -1,0 +1,54 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout sciafpad
+        uses: actions/checkout@v4
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            autoconf automake libtool pkg-config \
+            libgtk-4-dev \
+            valac gobject-introspection blueprint-compiler \
+            git xz-utils
+
+      - name: Build bugaevc/scintilla
+        run: |
+          git clone --depth=1 https://github.com/bugaevc/scintilla.git \
+            "$HOME/scintilla-bugaevc"
+          make -C "$HOME/scintilla-bugaevc/gtk4" demo
+
+      - name: Configure sciafpad
+        run: |
+          ./autogen.sh
+          mkdir -p build/autotools
+          cd build/autotools
+          ../../configure SCINTILLA_ROOT="$HOME/scintilla-bugaevc"
+
+      - name: Build sciafpad
+        run: |
+          cd build/autotools
+          make -j"$(nproc)"
+
+      - name: Run distcheck
+        run: |
+          cd build/autotools
+          make distcheck
+
+      - name: Upload tarball
+        uses: actions/upload-artifact@v4
+        with:
+          name: sciafpad-tarball
+          path: build/autotools/sciafpad-*.tar.xz
