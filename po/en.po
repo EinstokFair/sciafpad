@@ -1,0 +1,85 @@
+# English translation of sciafpad.
+# Copyright (C) 2026 EinstokFair
+# This file is distributed under the same license as the sciafpad package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: sciafpad 0.1\n"
+"Report-Msgid-Bugs-To: noreply@example.com\n"
+"POT-Creation-Date: 2026-10-10 03:25+0300\n"
+"PO-Revision-Date: 2026-10-10 00:00+0300\n"
+"Last-Translator: EinstokFair <noreply@example.com>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/main.cpp:68 src/main.cpp:117 src/main.cpp:218
+msgid "sciafpad"
+msgstr "sciafpad"
+
+#: src/main.cpp:124
+msgid "Открыть…"
+msgstr "Open…"
+
+#: src/main.cpp:125
+msgid "Сохранить"
+msgstr "Save"
+
+#: src/main.cpp:126
+msgid "Сохранить как…"
+msgstr "Save As…"
+
+#: src/main.cpp:127
+msgid "О программе"
+msgstr "About"
+
+#: src/main.cpp:128
+msgid "Выход"
+msgstr "Quit"
+
+#: src/main.cpp:129
+msgid "Файл"
+msgstr "File"
+
+#: src/main.cpp:132
+msgid "Отменить"
+msgstr "Undo"
+
+#: src/main.cpp:133
+msgid "Повторить"
+msgstr "Redo"
+
+#: src/main.cpp:134
+msgid "Вырезать"
+msgstr "Cut"
+
+#: src/main.cpp:135
+msgid "Копировать"
+msgstr "Copy"
+
+#: src/main.cpp:136
+msgid "Вставить"
+msgstr "Paste"
+
+#: src/main.cpp:137
+msgid "Правка"
+msgstr "Edit"
+
+#: src/main.cpp:176
+msgid "Открыть файл"
+msgstr "Open File"
+
+#: src/main.cpp:189
+msgid "Сохранить как"
+msgstr "Save As"
+
+#: src/main.cpp:190
+msgid "untitled.txt"
+msgstr "untitled.txt"
+
+#: src/main.cpp:221
+msgid "Простой текстовый редактор на GTK4 + Scintilla"
+msgstr "A simple text editor built on GTK4 + Scintilla"

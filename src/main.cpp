@@ -1,3 +1,4 @@
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <ScintillaView.h>
 #include <Scintilla.h>
@@ -64,7 +65,7 @@ static void update_title(EditorState* st) {
         gtk_window_set_title(GTK_WINDOW(st->window), name);
         g_free(name);
     } else {
-        gtk_window_set_title(GTK_WINDOW(st->window), "sciafpad");
+        gtk_window_set_title(GTK_WINDOW(st->window), _("sciafpad"));
     }
 }
 
@@ -113,27 +114,27 @@ static void on_save_finish(GObject* source, GAsyncResult* res, gpointer user_dat
 
 static void on_activate(GtkApplication* app, gpointer user_data) {
     GtkWidget* window = gtk_application_window_new(app);
-    gtk_window_set_title(GTK_WINDOW(window), "sciafpad");
+    gtk_window_set_title(GTK_WINDOW(window), _("sciafpad"));
     gtk_window_set_default_size(GTK_WINDOW(window), 900, 600);
 
     // --- Меню ---
     GMenu* menubar = g_menu_new();
 
     GMenu* file_menu = g_menu_new();
-    g_menu_append(file_menu, "Открыть…",       "win.open");
-    g_menu_append(file_menu, "Сохранить",      "win.save");
-    g_menu_append(file_menu, "Сохранить как…", "win.save-as");
-    g_menu_append(file_menu, "О программе",    "win.about");
-    g_menu_append(file_menu, "Выход",          "app.quit");
-    g_menu_append_submenu(menubar, "Файл", G_MENU_MODEL(file_menu));
+    g_menu_append(file_menu, _("Открыть…"),       "win.open");
+    g_menu_append(file_menu, _("Сохранить"),      "win.save");
+    g_menu_append(file_menu, _("Сохранить как…"), "win.save-as");
+    g_menu_append(file_menu, _("О программе"),    "win.about");
+    g_menu_append(file_menu, _("Выход"),          "app.quit");
+    g_menu_append_submenu(menubar, _("Файл"), G_MENU_MODEL(file_menu));
 
     GMenu* edit_menu = g_menu_new();
-    g_menu_append(edit_menu, "Отменить",   "win.undo");
-    g_menu_append(edit_menu, "Повторить",  "win.redo");
-    g_menu_append(edit_menu, "Вырезать",   "win.cut");
-    g_menu_append(edit_menu, "Копировать", "win.copy");
-    g_menu_append(edit_menu, "Вставить",   "win.paste");
-    g_menu_append_submenu(menubar, "Правка", G_MENU_MODEL(edit_menu));
+    g_menu_append(edit_menu, _("Отменить"),   "win.undo");
+    g_menu_append(edit_menu, _("Повторить"),  "win.redo");
+    g_menu_append(edit_menu, _("Вырезать"),   "win.cut");
+    g_menu_append(edit_menu, _("Копировать"), "win.copy");
+    g_menu_append(edit_menu, _("Вставить"),   "win.paste");
+    g_menu_append_submenu(menubar, _("Правка"), G_MENU_MODEL(edit_menu));
 
     GtkWidget* menubar_widget =
         gtk_popover_menu_bar_new_from_model(G_MENU_MODEL(menubar));
@@ -172,7 +173,7 @@ static void on_activate(GtkApplication* app, gpointer user_data) {
         G_CALLBACK(+[](GSimpleAction*, GVariant*, gpointer data){
             EditorState* s = static_cast<EditorState*>(data);
             GtkFileDialog* dlg = gtk_file_dialog_new();
-            gtk_file_dialog_set_title(dlg, "Открыть файл");
+            gtk_file_dialog_set_title(dlg, _("Открыть файл"));
             gtk_file_dialog_open(dlg, GTK_WINDOW(s->window), nullptr,
                                  on_open_finish, s);
             g_object_unref(dlg);
@@ -185,8 +186,8 @@ static void on_activate(GtkApplication* app, gpointer user_data) {
         G_CALLBACK(+[](GSimpleAction*, GVariant*, gpointer data){
             EditorState* s = static_cast<EditorState*>(data);
             GtkFileDialog* dlg = gtk_file_dialog_new();
-            gtk_file_dialog_set_title(dlg, "Сохранить как");
-            gtk_file_dialog_set_initial_name(dlg, "untitled.txt");
+            gtk_file_dialog_set_title(dlg, _("Сохранить как"));
+            gtk_file_dialog_set_initial_name(dlg, _("untitled.txt"));
             gtk_file_dialog_save(dlg, GTK_WINDOW(s->window), nullptr,
                                  on_save_finish, s);
             g_object_unref(dlg);
@@ -214,10 +215,10 @@ static void on_activate(GtkApplication* app, gpointer user_data) {
         G_CALLBACK(+[](GSimpleAction*, GVariant*, gpointer data){
             GtkWindow* parent = GTK_WINDOW(data);
             GtkWidget* about = gtk_about_dialog_new();
-            gtk_about_dialog_set_program_name(GTK_ABOUT_DIALOG(about), "sciafpad");
+            gtk_about_dialog_set_program_name(GTK_ABOUT_DIALOG(about), _("sciafpad"));
             gtk_about_dialog_set_version(GTK_ABOUT_DIALOG(about), "0.1");
             gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(about),
-                "Простой текстовый редактор на GTK4 + Scintilla");
+                _("Простой текстовый редактор на GTK4 + Scintilla"));
             gtk_about_dialog_set_license_type(GTK_ABOUT_DIALOG(about),
                 GTK_LICENSE_GPL_3_0);
             gtk_window_set_transient_for(GTK_WINDOW(about), parent);
@@ -253,6 +254,10 @@ static void on_activate(GtkApplication* app, gpointer user_data) {
 }
 
 int main(int argc, char** argv) {
+    bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
+    bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
+    textdomain(GETTEXT_PACKAGE);
+
     GtkApplication* app = gtk_application_new(
         "org.example.sciafpad", G_APPLICATION_DEFAULT_FLAGS);
     g_signal_connect(app, "activate", G_CALLBACK(on_activate), nullptr);

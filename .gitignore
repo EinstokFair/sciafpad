@@ -43,3 +43,20 @@ build/*
 !build/debian/
 !build/gentoo/**
 !build/debian/**
+
+# gettext generated (autopoint / gettextize)
+ABOUT-NLS
+config.rpath
+m4/
+po/Makefile.in.in
+po/Makevars.template
+po/Rules-quot
+po/boldquot.sed
+po/en@boldquot.header
+po/en@quot.header
+po/insert-header.sed
+po/quot.sed
+po/remove-potcdate.sed
+*.gmo
+*.pot
+stamp-po
