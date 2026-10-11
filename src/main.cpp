@@ -1,8 +1,10 @@
+#include <string>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <ScintillaView.h>
 #include <Scintilla.h>
-#include <string>
+#include "config.h"
+#include "about.h"
 
 // ---------- Вспомогательные функции ----------
 
@@ -213,21 +215,10 @@ static void on_activate(GtkApplication* app, gpointer user_data) {
     GSimpleAction* act_about = g_simple_action_new("about", nullptr);
     g_signal_connect(act_about, "activate",
         G_CALLBACK(+[](GSimpleAction*, GVariant*, gpointer data){
-            GtkWindow* parent = GTK_WINDOW(data);
-            GtkWidget* about = gtk_about_dialog_new();
-            gtk_about_dialog_set_program_name(GTK_ABOUT_DIALOG(about), _("sciafpad"));
-            gtk_about_dialog_set_version(GTK_ABOUT_DIALOG(about), "0.1");
-            gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(about),
-                _("Простой текстовый редактор на GTK4 + Scintilla"));
-            gtk_about_dialog_set_license_type(GTK_ABOUT_DIALOG(about),
-                GTK_LICENSE_GPL_3_0);
-            gtk_window_set_transient_for(GTK_WINDOW(about), parent);
-            gtk_window_set_modal(GTK_WINDOW(about), TRUE);
-            gtk_window_present(GTK_WINDOW(about));
+            show_about(GTK_WINDOW(data));
         }), window);
     g_action_map_add_action(G_ACTION_MAP(window), G_ACTION(act_about));
 
-    // --- Действия редактирования ---
     struct EditAction { const char* name; unsigned int msg; };
     const EditAction edit_actions[] = {
         {"undo",  SCI_UNDO},

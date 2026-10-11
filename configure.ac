@@ -17,6 +17,7 @@ PKG_CHECK_MODULES([GTK4], [gtk4 >= 4.10])
 PKG_CHECK_MODULES([SCINTILLA], [scintilla-gtk4-bugaevc])
 
 AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$PACKAGE"], [Gettext package name])
+AC_CONFIG_HEADERS([config.h])
 
 AC_CONFIG_FILES([
     Makefile

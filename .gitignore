@@ -88,3 +88,11 @@ po/insert-header.sed
 /po/en@boldquot.header
 /po/insert-header.sin
 /po/remove-potcdate.sin
+
+# Autotools config header
+config.h
+config.h.in
+stamp-h1
+
+# Local-only release script
+packaging/release.sh

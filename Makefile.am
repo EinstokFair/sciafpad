@@ -1,7 +1,7 @@
 SUBDIRS = po
 
 bin_PROGRAMS = sciafpad
-sciafpad_SOURCES = src/main.cpp
+sciafpad_SOURCES = src/main.cpp src/about.cpp
 
 sciafpad_CPPFLAGS = \
     $(GTK4_CFLAGS) \
