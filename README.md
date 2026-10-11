@@ -74,4 +74,4 @@ GPL-3.0-or-later. Подробности в `COPYING`.
 ## Документация
 
 Документация API доступна по адресу
-<https://einstokfair.github.io/sciafpad/v/0.3.8/>.
+<https://einstokfair.github.io/sciafpad/v/0.3.8.1/>.

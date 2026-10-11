@@ -72,4 +72,4 @@ GPL-3.0-or-later. See `COPYING` for details.
 ## Documentation
 
 API documentation is available at
-<https://einstokfair.github.io/sciafpad/v/0.3.8/>.
+<https://einstokfair.github.io/sciafpad/v/0.3.8.1/>.

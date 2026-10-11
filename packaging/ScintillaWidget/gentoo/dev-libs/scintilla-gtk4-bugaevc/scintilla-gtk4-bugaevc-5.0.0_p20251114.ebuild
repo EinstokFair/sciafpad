@@ -11,7 +11,7 @@ SCINTILLA_VERSION="5.0.0"
 
 DESCRIPTION="GTK4 Scintilla widget (ScintillaWidget), bugaevc fork"
 HOMEPAGE="https://github.com/bugaevc/scintilla"
-SRC_URI="https://github.com/EinstokFair/sciafpad/releases/download/v0.3.8/${SCINTILLA_TAR}.tar.xz
+SRC_URI="https://github.com/EinstokFair/sciafpad/releases/download/v0.3.8.1/${SCINTILLA_TAR}.tar.xz
 	-> scintilla-gtk4-bugaevc-5.0.0_p20251114.tar.xz"
 
 LICENSE="HPND"

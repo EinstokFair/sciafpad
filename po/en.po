@@ -15,70 +15,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/main.cpp:68 src/main.cpp:117 src/main.cpp:218
+#: src/main.cpp:70 src/main.cpp:119
 msgid "sciafpad"
 msgstr "sciafpad"
 
-#: src/main.cpp:124
+#: src/main.cpp:126
 msgid "Открыть…"
 msgstr "Open…"
 
-#: src/main.cpp:125
+#: src/main.cpp:127
 msgid "Сохранить"
 msgstr "Save"
 
-#: src/main.cpp:126
+#: src/main.cpp:128
 msgid "Сохранить как…"
 msgstr "Save As…"
 
-#: src/main.cpp:127
+#: src/main.cpp:129
 msgid "О программе"
 msgstr "About"
 
-#: src/main.cpp:128
+#: src/main.cpp:130
 msgid "Выход"
 msgstr "Quit"
 
-#: src/main.cpp:129
+#: src/main.cpp:131
 msgid "Файл"
 msgstr "File"
 
-#: src/main.cpp:132
+#: src/main.cpp:134
 msgid "Отменить"
 msgstr "Undo"
 
-#: src/main.cpp:133
+#: src/main.cpp:135
 msgid "Повторить"
 msgstr "Redo"
 
-#: src/main.cpp:134
+#: src/main.cpp:136
 msgid "Вырезать"
 msgstr "Cut"
 
-#: src/main.cpp:135
+#: src/main.cpp:137
 msgid "Копировать"
 msgstr "Copy"
 
-#: src/main.cpp:136
+#: src/main.cpp:138
 msgid "Вставить"
 msgstr "Paste"
 
-#: src/main.cpp:137
+#: src/main.cpp:139
 msgid "Правка"
 msgstr "Edit"
 
-#: src/main.cpp:176
+#: src/main.cpp:178
 msgid "Открыть файл"
 msgstr "Open File"
 
-#: src/main.cpp:189
+#: src/main.cpp:191
 msgid "Сохранить как"
 msgstr "Save As"
 
-#: src/main.cpp:190
+#: src/main.cpp:192
 msgid "untitled.txt"
 msgstr "untitled.txt"
 
-#: src/main.cpp:221
-msgid "Простой текстовый редактор на GTK4 + Scintilla"
-msgstr "A simple text editor built on GTK4 + Scintilla"
+#~ msgid "Простой текстовый редактор на GTK4 + Scintilla"
+#~ msgstr "A simple text editor built on GTK4 + Scintilla"
