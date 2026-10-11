@@ -50,7 +50,7 @@ jobs:
           ./autogen.sh
           mkdir -p build/autotools
           cd build/autotools
-          ../../configure
+          "$GITHUB_WORKSPACE/configure"
 
       - name: Build sciafpad
         run: |
