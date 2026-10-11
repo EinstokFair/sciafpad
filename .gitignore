@@ -50,7 +50,6 @@ build/build-with-secrets.sh
 
 # gettext generated (autopoint / gettextize)
 ABOUT-NLS
-config.rpath
 m4/
 *.gmo
 *.pot
