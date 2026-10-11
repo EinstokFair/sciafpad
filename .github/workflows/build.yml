@@ -41,7 +41,7 @@ jobs:
 
       - name: Install scintilla-gtk4-bugaevc .deb
         run: |
-          sudo dpkg -i "$HOME"/scintilla-gtk4-bugaevc_*.deb || sudo apt-get -f install -y
+          sudo dpkg -i "$HOME"/libscintilla-gtk4-bugaevc-5_*.deb "$HOME"/libscintilla-gtk4-bugaevc-dev_*.deb || sudo apt-get -f install -y
           sudo ldconfig
           pkg-config --modversion scintilla-gtk4-bugaevc
 
