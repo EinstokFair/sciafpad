@@ -1,3 +1,4 @@
+top_builddir = ..
 DOMAIN = $(PACKAGE)
 XGETTEXT_OPTIONS = --keyword=_ --keyword=N_ --from-code=UTF-8
 COPYRIGHT_HOLDER = EinstokFair
