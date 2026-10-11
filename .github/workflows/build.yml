@@ -24,22 +24,22 @@ jobs:
           sudo apt-get install -y \
             build-essential \
             autoconf automake libtool pkg-config \
-            libjtk-4-dev \
+            libgtk-4-dev \
             valac gobject-introspection blueprint-compiler \
             git xz-utils gettext autopoint \
             debhelper devscripts
 
-      - name: Build scintilla-gtk-4-bugaevc .deb
+      - name: Build scintilla-gtk4-bugaevc .deb
         run: |
           git clone --depth=1 https://github.com/bugaevc/scintilla.git "$HOME/scintilla-src"
           cp -r packaging/ScintillaWidget/debian "$HOME/scintilla-src/"
-          cp packaging/ScintillaWidget/scintilla-gtk-4-bugaevc.pc.in "$HOME/scintilla-src/debian/"
+          cp packaging/ScintillaWidget/scintilla-gtk4-bugaevc.pc.in "$HOME/scintilla-src/debian/"
           cd "$HOME/scintilla-src"
           dpkg-buildpackage -b -us -uc -d
 
-      - name: Install scintilla-gtk-4-bugaevc .deb
+      - name: Install scintilla-gtk4-bugaevc .deb
         run: |
-          sudo dpkg -i "$HOME"/scintilla-gtk-4-bugaevc_*.deb || sudo apt-get -f install -y
+          sudo dpkg -i "$HOME"/scintilla-gtk4-bugaevc_*.deb || sudo apt-get -f install -y
           sudo ldconfig
           pkg-config --modversion scintilla-gtk4-bugaevc
 
