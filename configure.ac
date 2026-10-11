@@ -1,4 +1,4 @@
-AC_INIT([sciafpad], [0.3.5], [you@example.com])
+AC_INIT([sciafpad], [0.3.6], [you@example.com])
 AM_INIT_AUTOMAKE([foreign subdir-objects dist-xz no-dist-gzip])
 AC_PROG_CC
 AC_PROG_CXX
@@ -10,7 +10,7 @@ CXXFLAGS="$CXXFLAGS -std=c++17"
 
 # i18n: source language is Russian, translations via .po files
 AM_GNU_GETTEXT([external])
-AM_GNU_GETTEXT_VERSION([0.21])
+AM_GNU_GETTEXT_VERSION([0.23])
 
 PKG_CHECK_MODULES([GTK4], [gtk4 >= 4.10])
 PKG_CHECK_MODULES([SCINTILLA], [scintilla-gtk4-bugaevc])

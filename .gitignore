@@ -21,7 +21,7 @@ config.sub
 *.lo
 *.la
 *.so
-sciafpad
+/sciafpad
 src/.deps/
 src/.dirstamp
 
