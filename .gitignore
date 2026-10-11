@@ -74,3 +74,5 @@ packaging/build-with-secrets.sh
 # Local-only release scripts
 packaging/act.sh
 packaging/act-container.sh
+po/remove-potcdate.sed
+po/insert-header.sed
