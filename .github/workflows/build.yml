@@ -24,22 +24,31 @@ jobs:
           sudo apt-get install -y \
             build-essential \
             autoconf automake libtool pkg-config \
-            libgtk-4-dev \
+            libjtk-4-dev \
             valac gobject-introspection blueprint-compiler \
-            git xz-utils gettext autopoint
+            git xz-utils gettext autopoint \
+            debhelper devscripts
 
-      - name: Build bugaevc/scintilla
+      - name: Build scintilla-gtk-4-bugaevc .deb
         run: |
-          git clone --depth=1 https://github.com/bugaevc/scintilla.git \
-            "$HOME/scintilla-bugaevc"
-          make -C "$HOME/scintilla-bugaevc/gtk4" demo
+          git clone --depth=1 https://github.com/bugaevc/scintilla.git "$HOME/scintilla-src"
+          cp -r packaging/ScintillaWidget/debian "$HOME/scintilla-src/"
+          cp packaging/ScintillaWidget/scintilla-gtk-4-bugaevc.pc.in "$HOME/scintilla-src/debian/"
+          cd "$HOME/scintilla-src"
+          dpkg-buildpackage -b -us -uc -d
+
+      - name: Install scintilla-gtk-4-bugaevc .deb
+        run: |
+          sudo dpkg -i "$HOME"/scintilla-gtk-4-bugaevc_*.deb || sudo apt-get -f install -y
+          sudo ldconfig
+          pkg-config --modversion scintilla-gtk4-bugaevc
 
       - name: Configure sciafpad
         run: |
           ./autogen.sh
           mkdir -p build/autotools
           cd build/autotools
-          ../../configure SCINTILLA_ROOT="$HOME/scintilla-bugaevc"
+          ../../configure
 
       - name: Build sciafpad
         run: |
@@ -49,8 +58,7 @@ jobs:
       - name: Run distcheck
         run: |
           cd build/autotools
-          make distcheck \
-            DISTCHECK_CONFIGURE_FLAGS="SCINTILLA_ROOT=$HOME/scintilla-bugaevc"
+          make distcheck
 
       - name: Upload tarball
         uses: actions/upload-artifact@v4
