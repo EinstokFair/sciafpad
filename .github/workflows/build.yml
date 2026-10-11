@@ -32,9 +32,13 @@ jobs:
       - name: Build scintilla-gtk4-bugaevc .deb
         run: |
           git clone --depth=1 https://github.com/bugaevc/scintilla.git "$HOME/scintilla-src"
-          cp -r packaging/ScintillaWidget/debian "$HOME/scintilla-src/"
-          cp packaging/ScintillaWidget/scintilla-gtk4-bugaevc.pc.in "$HOME/scintilla-src/debian/"
+          cd "$HOME/scintilla-src/gtk4"
+          make -B shared
+          mkdir -p "$HOME/scintilla-src/bin"
+          cp libscintilla.so "$HOME/scintilla-src/bin/libscintilla.so"
           cd "$HOME/scintilla-src"
+          cp -r "$GITHUB_WORKSPACE/packaging/ScintillaWidget/debian" .
+          cp "$GITHUB_WORKSPACE/packaging/ScintillaWidget/scintilla-gtk4-bugaevc.pc.in" debian/
           dpkg-buildpackage -b -us -uc -d
 
       - name: Install scintilla-gtk4-bugaevc .deb
