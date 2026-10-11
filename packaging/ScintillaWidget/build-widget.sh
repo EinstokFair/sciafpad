@@ -20,7 +20,7 @@ fi
 
 # 1. Собрать .so
 cd "$work/gtk4"
-make -B shared
+make -B scintilla-marshal.h shared
 
 # 2. Заголовки — в work/include/scintilla-gtk4-bugaevc/
 inc="$work/include/scintilla-gtk4-bugaevc"

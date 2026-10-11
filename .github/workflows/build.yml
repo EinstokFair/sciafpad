@@ -33,7 +33,7 @@ jobs:
         run: |
           git clone --depth=1 https://github.com/bugaevc/scintilla.git "$HOME/scintilla-src"
           cd "$HOME/scintilla-src/gtk4"
-          make -B shared
+          make -B scintilla-marshal.h shared
           mkdir -p "$HOME/scintilla-src/bin"
           cp libscintilla.so "$HOME/scintilla-src/bin/libscintilla.so"
           cd "$HOME/scintilla-src"
