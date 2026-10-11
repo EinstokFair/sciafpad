@@ -1,7 +1,7 @@
 prefix=@PREFIX@
 exec_prefix=${prefix}
-libdir=${exec_prefix}/lib
-includedir=${prefix}/include/scintilla-gtk4-bugaevc
+libdir=@LIBDIR@
+includedir=@INCLUDEDIR@
 
 Name: ScintillaWidget (bugaevc GTK4 fork of Scintilla)
 Description: GTK4 Scintilla widget (ScintillaWidget)

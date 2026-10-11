@@ -39,28 +39,14 @@ untitled.txt
 build/*
 
 # ...except packaging recipes (kept in git)
-!build/gentoo/
-!build/debian/
-!build/gentoo/**
-!build/debian/**
+!build/ScintillaWidget/
+!build/ScintillaWidget/**
+!build/sciafpad/
+!build/sciafpad/**
 
-# ...but ignore local-only helpers and build artifacts
+# ...but ignore local-only helpers
+build/act.sh
 build/build-with-secrets.sh
-build/debian/*/upper/
-build/debian/*/upper.work/
-build/debian/*/src/
-build/debian/*/*.deb
-build/debian/*/*.buildinfo
-build/debian/*/*.changes
-build/debian/*/*.dsc
-build/debian/*/debian/files
-build/debian/*/debian/tmp/
-build/debian/*/debian/.debhelper/
-build/debian/*/debian/*.substvars
-build/debian/*/debian/*.debhelper.log
-
-# Generated at Debian build time
-po/POTFILES
 
 # gettext generated (autopoint / gettextize)
 ABOUT-NLS
@@ -81,3 +67,8 @@ po/Makefile
 po/*.gmo
 po/stamp-po
 po/*.po.new
+po/POTFILES
+
+# Local-only packaging scripts
+packaging/act.sh
+packaging/build-with-secrets.sh

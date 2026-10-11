@@ -12,13 +12,15 @@ REALNAME      := $(LIBNAME).$(VERSION_FULL)
 	dh $@
 
 override_dh_auto_clean:
-	cd gtk4 && $(MAKE) clean || true
+	# .so is built by build-widget.sh; do not clean it here
+	:
 
 override_dh_auto_configure:
 	:
 
 override_dh_auto_build:
-	cd gtk4 && $(MAKE) shared
+	# .so already built by build-widget.sh
+	:
 
 override_dh_auto_test:
 	:
@@ -41,6 +43,8 @@ override_dh_auto_install:
 	# 3. pkg-config
 	install -d debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/pkgconfig
 	sed -e 's|@PREFIX@|/usr|g' \
+	    -e 's|@LIBDIR@|/usr/lib/$(DEB_HOST_MULTIARCH)|g' \
+	    -e 's|@INCLUDEDIR@|/usr/include/scintilla-gtk4-bugaevc|g' \
 	    -e 's|@VERSION@|$(VERSION_FULL)|g' \
 	    debian/scintilla-gtk4-bugaevc.pc.in \
 	    > debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/pkgconfig/scintilla-gtk4-bugaevc.pc

@@ -4,6 +4,10 @@ AC_PROG_CC
 AC_PROG_CXX
 AC_LANG([C++])
 
+# Require C++17 (sciafpad uses aggregate initialization for structs
+# with default member initializers, which requires C++14/17).
+CXXFLAGS="$CXXFLAGS -std=c++17"
+
 # i18n: source language is Russian, translations via .po files
 AM_GNU_GETTEXT([external])
 AM_GNU_GETTEXT_VERSION([0.21])

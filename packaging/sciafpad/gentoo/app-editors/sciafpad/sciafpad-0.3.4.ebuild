@@ -3,7 +3,6 @@
 
 EAPI=8
 
-inherit vcs-snapshot
 
 DESCRIPTION="A minimal GTK4 text editor based on the bugaevc/scintilla port"
 HOMEPAGE="https://github.com/EinstokFair/sciafpad"

@@ -17,7 +17,7 @@ EXTRA_DIST = \
     tools/gen-changelog.sh \
     tools/msgmerge-wrapper.sh
 
-docdir = $(datadir)/doc/sciafpad
+docdir = $(datadir)/doc/$(PACKAGE)-$(VERSION)
 dist_doc_DATA = README.md COPYING AUTHORS NEWS ChangeLog GENTOO.md DEBIAN.md
 
 ChangeLog:
