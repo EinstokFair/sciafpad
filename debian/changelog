@@ -1,4 +1,4 @@
-sciafpad (0.3.6-1) unstable; urgency=medium
+sciafpad (0.3.7-1) unstable; urgency=medium
 
   * Version 0.3.3.
   * Build with pkg-config: depend on libscintilla-gtk4-bugaevc-dev.
