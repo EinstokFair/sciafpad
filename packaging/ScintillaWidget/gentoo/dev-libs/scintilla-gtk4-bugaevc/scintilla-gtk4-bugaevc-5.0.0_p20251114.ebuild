@@ -6,7 +6,7 @@ EAPI=8
 inherit vcs-snapshot
 
 # Upstream: bugaevc/scintilla, GTK4 fork, commit 3ba9b8f09851b60180ce57ee908c6eb57c751368
-SCINTILLA_TAR="scintilla-gtk4-bugaevc-5.0.0~20251114"
+SCINTILLA_TAR="scintilla-gtk4-bugaevc-5.0.0_20251114"
 SCINTILLA_VERSION="5.0.0"
 
 DESCRIPTION="GTK4 Scintilla widget (ScintillaWidget), bugaevc fork"
