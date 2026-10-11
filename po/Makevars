@@ -7,4 +7,4 @@ MSGID_BUGS_ADDRESS = noreply@example.com
 EXTRA_LOCALE_CATEGORIES =
 
 # Use our wrapper to strip volatile POT-Creation-Date from generated .po files.
-MSGMERGE = $(CURDIR)/../tools/msgmerge-wrapper.sh
+MSGMERGE = @abs_top_srcdir@/tools/msgmerge-wrapper.sh
