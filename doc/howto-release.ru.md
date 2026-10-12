@@ -16,13 +16,13 @@
 
 Изменить аргумент версии в `AC_INIT`:
 
-    AC_INIT([sciafpad], [0.4.0], [you@example.com])
+    AC_INIT([sciafpad], [<X.Y.Z>], [you@example.com])
 
 ### 2.2. `README.md`
 
 Обновить ссылку на документацию API:
 
-    <https://einstokfair.github.io/sciafpad/v/0.4.0/>
+    <https://einstokfair.github.io/sciafpad/v/0.3.8/>
 
 ## 3. Пересобрать инфраструктуру Autotools
 
@@ -48,26 +48,26 @@ gettext infrastructure mismatch.
     make dist
     ls -la *.tar.xz
 
-Ожидаемый результат: `sciafpad-0.4.0.tar.xz`.
+Ожидаемый результат: `sciafpad-<X.Y.Z>.tar.xz`.
 
 ## 5. Коммит и push
 
     git add README.md configure.ac
     git status
-    git commit -m "Bump version to 0.4.0; update README link"
+    git commit -m "Bump version to 0.3.8; update README link"
     git push
 
 ## 6. Создать тег и релиз
 
-    git tag v0.4.0
-    git push origin v0.4.0
+    git tag v<X.Y.Z>
+    git push origin v<X.Y.Z>
 
-    gh release create v0.4.0 \
-      --title "sciafpad 0.4.0" \
+    gh release create v<X.Y.Z> \
+      --title "sciafpad 0.3.8" \
       --notes "A minimal GTK4 text editor built on Scintilla (bugaevc GTK4 port)."
 
     cd build/autotools
-    gh release upload v0.4.0 sciafpad-0.4.0.tar.xz
+    gh release upload v<X.Y.Z> sciafpad-<X.Y.Z>.tar.xz
 
 ## 7. Проверить документацию
 
@@ -77,35 +77,35 @@ Workflow `Deploy docs` запускается автоматически на т
 
 Через одну-две минуты:
 
-    curl -sI https://einstokfair.github.io/sciafpad/v/0.4.0/ | head -3
+    curl -sI https://einstokfair.github.io/sciafpad/v/0.3.8/ | head -3
 
 ## 8. Проверить релиз
 
-    gh release view v0.4.0
+    gh release view v<X.Y.Z>
 
 ## Правила именования тегов
 
-- Формат: `v<major>.<minor>.<patch>` — например, `v0.4.0`, `v1.0.0`.
-- Суффиксы разрешены: `v0.4.0-rc1`, `v0.4.0-p17`.
-- Двойной дефис запрещён: `v0.4.0--x` упадёт.
-- Без префикса `v` — упадёт: `0.4.0` не подходит.
+- Формат: `v<major>.<minor>.<patch>` — например, `v0.3.8`, `v1.0.0`.
+- Суффиксы разрешены: `v<X.Y.Z>-rc1`, `v<X.Y.Z>-p17`.
+- Двойной дефис запрещён: `v<X.Y.Z>--x` упадёт.
+- Без префикса `v` — упадёт: `<X.Y.Z>` не подходит.
 
 ## Если версия сломана
 
-1. Поднять версию ещё раз (`0.4.0` → `0.4.1`).
+1. Поднять версию ещё раз (`<X.Y.Z>` → `<X.Y.Z+1>`).
 2. Пройти шаги 1–8.
 3. Удалить битый тег:
 
-       git tag -d v0.4.0
-       git push origin --delete v0.4.0
-       gh release delete v0.4.0 --yes
+       git tag -d v<X.Y.Z>
+       git push origin --delete v<X.Y.Z>
+       gh release delete v<X.Y.Z> --yes
 
 4. Удалить битую документацию из `gh-pages`:
 
        git checkout gh-pages
        git pull --rebase origin gh-pages
-       git rm -r v/0.4.0
-       git commit -m "Remove docs for broken v0.4.0"
+       git rm -r v/0.3.8
+       git commit -m "Remove docs for broken v<X.Y.Z>"
        git push origin gh-pages
        git checkout main
 

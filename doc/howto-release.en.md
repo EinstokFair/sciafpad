@@ -16,13 +16,13 @@ The version is declared in two places. Update both at the same time.
 
 Change the version argument of `AC_INIT`:
 
-    AC_INIT([sciafpad], [0.4.0], [you@example.com])
+    AC_INIT([sciafpad], [<X.Y.Z>], [you@example.com])
 
 ### 2.2. `README.md`
 
 Update the link to the API documentation:
 
-    <https://einstokfair.github.io/sciafpad/v/0.4.0/>
+    <https://einstokfair.github.io/sciafpad/v/0.3.8/>
 
 ## 3. Regenerate Autotools infrastructure
 
@@ -48,26 +48,26 @@ mismatch.
     make dist
     ls -la *.tar.xz
 
-Expected result: `sciafpad-0.4.0.tar.xz`.
+Expected result: `sciafpad-<X.Y.Z>.tar.xz`.
 
 ## 5. Commit and push
 
     git add README.md configure.ac
     git status
-    git commit -m "Bump version to 0.4.0; update README link"
+    git commit -m "Bump version to 0.3.8; update README link"
     git push
 
 ## 6. Create the tag and the release
 
-    git tag v0.4.0
-    git push origin v0.4.0
+    git tag v<X.Y.Z>
+    git push origin v<X.Y.Z>
 
-    gh release create v0.4.0 \
-      --title "sciafpad 0.4.0" \
+    gh release create v<X.Y.Z> \
+      --title "sciafpad 0.3.8" \
       --notes "A minimal GTK4 text editor built on Scintilla (bugaevc GTK4 port)."
 
     cd build/autotools
-    gh release upload v0.4.0 sciafpad-0.4.0.tar.xz
+    gh release upload v<X.Y.Z> sciafpad-<X.Y.Z>.tar.xz
 
 ## 7. Verify the documentation
 
@@ -77,35 +77,35 @@ The `Deploy docs` workflow runs automatically on a tag.
 
 After one or two minutes:
 
-    curl -sI https://einstokfair.github.io/sciafpad/v/0.4.0/ | head -3
+    curl -sI https://einstokfair.github.io/sciafpad/v/0.3.8/ | head -3
 
 ## 8. Verify the release
 
-    gh release view v0.4.0
+    gh release view v<X.Y.Z>
 
 ## Tag naming rules
 
-- Format: `v<major>.<minor>.<patch>` — for example, `v0.4.0`, `v1.0.0`.
-- Suffixes are allowed: `v0.4.0-rc1`, `v0.4.0-p17`.
-- Double dash is forbidden: `v0.4.0--x` will fail.
-- Without the `v` prefix — will fail: `0.4.0` does not match.
+- Format: `v<major>.<minor>.<patch>` — for example, `v0.3.8`, `v1.0.0`.
+- Suffixes are allowed: `v<X.Y.Z>-rc1`, `v<X.Y.Z>-p17`.
+- Double dash is forbidden: `v<X.Y.Z>--x` will fail.
+- Without the `v` prefix — will fail: `<X.Y.Z>` does not match.
 
 ## If a version is broken
 
-1. Bump the version again (`0.4.0` → `0.4.1`).
+1. Bump the version again (`<X.Y.Z>` → `<X.Y.Z+1>`).
 2. Repeat steps 1–8.
 3. Delete the broken tag:
 
-       git tag -d v0.4.0
-       git push origin --delete v0.4.0
-       gh release delete v0.4.0 --yes
+       git tag -d v<X.Y.Z>
+       git push origin --delete v<X.Y.Z>
+       gh release delete v<X.Y.Z> --yes
 
 4. Remove the broken documentation from `gh-pages`:
 
        git checkout gh-pages
        git pull --rebase origin gh-pages
-       git rm -r v/0.4.0
-       git commit -m "Remove docs for broken v0.4.0"
+       git rm -r v/0.3.8
+       git commit -m "Remove docs for broken v<X.Y.Z>"
        git push origin gh-pages
        git checkout main
 
