@@ -22,7 +22,7 @@ Change the version argument of `AC_INIT`:
 
 Update the link to the API documentation:
 
-    <https://einstokfair.github.io/sciafpad/v/0.3.8/>
+    <https://einstokfair.github.io/sciafpad/v/0.3.8.1/>
 
 ## 3. Regenerate Autotools infrastructure
 
@@ -54,7 +54,7 @@ Expected result: `sciafpad-<X.Y.Z>.tar.xz`.
 
     git add README.md configure.ac
     git status
-    git commit -m "Bump version to 0.3.8; update README link"
+    git commit -m "Bump version to 0.3.8.1; update README link"
     git push
 
 ## 6. Create the tag and the release
@@ -63,7 +63,7 @@ Expected result: `sciafpad-<X.Y.Z>.tar.xz`.
     git push origin v<X.Y.Z>
 
     gh release create v<X.Y.Z> \
-      --title "sciafpad 0.3.8" \
+      --title "sciafpad 0.3.8.1" \
       --notes "A minimal GTK4 text editor built on Scintilla (bugaevc GTK4 port)."
 
     cd build/autotools
@@ -77,7 +77,7 @@ The `Deploy docs` workflow runs automatically on a tag.
 
 After one or two minutes:
 
-    curl -sI https://einstokfair.github.io/sciafpad/v/0.3.8/ | head -3
+    curl -sI https://einstokfair.github.io/sciafpad/v/0.3.8.1/ | head -3
 
 ## 8. Verify the release
 
@@ -85,7 +85,7 @@ After one or two minutes:
 
 ## Tag naming rules
 
-- Format: `v<major>.<minor>.<patch>` — for example, `v0.3.8`, `v1.0.0`.
+- Format: `v<major>.<minor>.<patch>` — for example, `v0.3.8.1`.
 - Suffixes are allowed: `v<X.Y.Z>-rc1`, `v<X.Y.Z>-p17`.
 - Double dash is forbidden: `v<X.Y.Z>--x` will fail.
 - Without the `v` prefix — will fail: `<X.Y.Z>` does not match.

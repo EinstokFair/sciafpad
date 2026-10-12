@@ -14,6 +14,7 @@ sciafpad_LDADD = \
     $(LIBINTL)
 
 EXTRA_DIST = \
+    src/about.h \
     tools/gen-changelog.sh \
     tools/msgmerge-wrapper.sh
 

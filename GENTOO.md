@@ -1,7 +1,7 @@
 # Building sciafpad on Gentoo
 
 > **Note:** This repository ships an ebuild for this package:
-> [`build/gentoo/app-editors/sciafpad/sciafpad-0.1.ebuild`](build/gentoo/app-editors/sciafpad/sciafpad-0.1.ebuild).
+> [`packaging/sciafpad/gentoo/app-editors/sciafpad/sciafpad-0.3.8.1.ebuild`](packaging/sciafpad/gentoo/app-editors/sciafpad/sciafpad-0.3.8.1.ebuild).
 > See the section "Using the bundled ebuild" below for instructions.
 
 ## Dependencies
@@ -83,9 +83,9 @@ Create `~/local-overlay/profiles/categories`:
 ### Step 2: Copy the ebuild into the overlay
 
     mkdir -p ~/local-overlay/app-editors/sciafpad
-    cp build/gentoo/app-editors/sciafpad/sciafpad-0.1.ebuild \
+    cp packaging/sciafpad/gentoo/app-editors/sciafpad/sciafpad-0.3.8.1.ebuild \
        ~/local-overlay/app-editors/sciafpad/
-    cp build/gentoo/app-editors/sciafpad/metadata.xml \
+    cp packaging/sciafpad/gentoo/app-editors/sciafpad/metadata.xml \
        ~/local-overlay/app-editors/sciafpad/
 
 ### Step 3: Generate the Manifest
@@ -93,7 +93,7 @@ Create `~/local-overlay/profiles/categories`:
 Portage requires a `Manifest` file listing checksums of all sources:
 
     cd ~/local-overlay/app-editors/sciafpad
-    sudo ebuild sciafpad-0.1.ebuild manifest
+    sudo ebuild sciafpad-0.3.8.1.ebuild manifest
 
 ### Step 4: Install
 
