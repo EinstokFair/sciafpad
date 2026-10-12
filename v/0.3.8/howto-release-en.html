@@ -84,10 +84,10 @@ git status
 <p>The version is declared in two places. Update both at the same time.</p>
 <h2><a class="anchor" id="autotoc_md7"></a>
 2.1. &lt;tt&gt;configure.ac&lt;/tt&gt;</h2>
-<p>Change the version argument of <code>AC_INIT</code>: </p><pre class="fragment">AC_INIT([sciafpad], [0.4.0], [you@example.com])
+<p>Change the version argument of <code>AC_INIT</code>: </p><pre class="fragment">AC_INIT([sciafpad], [&lt;X.Y.Z&gt;], [you@example.com])
 </pre> <h2><a class="anchor" id="autotoc_md8"></a>
 2.2. &lt;tt&gt;README.md&lt;/tt&gt;</h2>
-<p>Update the link to the API documentation: </p><pre class="fragment">&lt;https://einstokfair.github.io/sciafpad/v/0.4.0/&gt;
+<p>Update the link to the API documentation: </p><pre class="fragment">&lt;https://einstokfair.github.io/sciafpad/v/0.3.8.1/&gt;
 </pre> <h1><a class="anchor" id="autotoc_md9"></a>
 3. Regenerate Autotools infrastructure</h1>
 <pre class="fragment">rm -rf autom4te.cache aclocal.m4 configure Makefile.in m4 po/Makefile.in.in po/stamp-po
@@ -107,52 +107,52 @@ rm -rf po Makefile config.status sciafpad-*
 ../../configure --with-scintilla=/path/to/scintilla
 make dist
 ls -la *.tar.xz
-</pre><p> Expected result: <code>sciafpad-0.4.0.tar.xz</code>.</p>
+</pre><p> Expected result: <code>sciafpad-&lt;X.Y.Z&gt;.tar.xz</code>.</p>
 <h1><a class="anchor" id="autotoc_md11"></a>
 5. Commit and push</h1>
 <pre class="fragment">git add README.md configure.ac
 git status
-git commit -m "Bump version to 0.4.0; update README link"
+git commit -m "Bump version to 0.3.8.1; update README link"
 git push
 </pre> <h1><a class="anchor" id="autotoc_md12"></a>
 6. Create the tag and the release</h1>
-<pre class="fragment">git tag v0.4.0
-git push origin v0.4.0
+<pre class="fragment">git tag v&lt;X.Y.Z&gt;
+git push origin v&lt;X.Y.Z&gt;
 
-gh release create v0.4.0 \
-  --title "sciafpad 0.4.0" \
+gh release create v&lt;X.Y.Z&gt; \
+  --title "sciafpad 0.3.8.1" \
   --notes "A minimal GTK4 text editor built on Scintilla (bugaevc GTK4 port)."
 
 cd build/autotools
-gh release upload v0.4.0 sciafpad-0.4.0.tar.xz
+gh release upload v&lt;X.Y.Z&gt; sciafpad-&lt;X.Y.Z&gt;.tar.xz
 </pre> <h1><a class="anchor" id="autotoc_md13"></a>
 7. Verify the documentation</h1>
 <p>The <code>Deploy docs</code> workflow runs automatically on a tag. </p><pre class="fragment">gh run list --limit 5
-</pre><p> After one or two minutes: </p><pre class="fragment">curl -sI https://einstokfair.github.io/sciafpad/v/0.4.0/ | head -3
+</pre><p> After one or two minutes: </p><pre class="fragment">curl -sI https://einstokfair.github.io/sciafpad/v/0.3.8.1/ | head -3
 </pre> <h1><a class="anchor" id="autotoc_md14"></a>
 8. Verify the release</h1>
-<pre class="fragment">gh release view v0.4.0
+<pre class="fragment">gh release view v&lt;X.Y.Z&gt;
 </pre> <h1><a class="anchor" id="autotoc_md15"></a>
 Tag naming rules</h1>
 <ul>
-<li>Format: <code>v&lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;</code> — for example, <code>v0.4.0</code>, <code>v1.0.0</code>.</li>
-<li>Suffixes are allowed: <code>v0.4.0-rc1</code>, <code>v0.4.0-p17</code>.</li>
-<li>Double dash is forbidden: <code>v0.4.0--x</code> will fail.</li>
-<li>Without the <code>v</code> prefix — will fail: <code>0.4.0</code> does not match.</li>
+<li>Format: <code>v&lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;</code> — for example, <code>v0.3.8.1</code>.</li>
+<li>Suffixes are allowed: <code>v&lt;X.Y.Z&gt;-rc1</code>, <code>v&lt;X.Y.Z&gt;-p17</code>.</li>
+<li>Double dash is forbidden: <code>v&lt;X.Y.Z&gt;--x</code> will fail.</li>
+<li>Without the <code>v</code> prefix — will fail: <code>&lt;X.Y.Z&gt;</code> does not match.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md16"></a>
 If a version is broken</h1>
 <ol type="1">
-<li>Bump the version again (<code>0.4.0</code> → <code>0.4.1</code>).</li>
+<li>Bump the version again (<code>&lt;X.Y.Z&gt;</code> → <code>&lt;X.Y.Z+1&gt;</code>).</li>
 <li>Repeat steps 1–8.</li>
-<li>Delete the broken tag: <pre class="fragment">git tag -d v0.4.0
-git push origin --delete v0.4.0
-gh release delete v0.4.0 --yes
+<li>Delete the broken tag: <pre class="fragment">git tag -d v&lt;X.Y.Z&gt;
+git push origin --delete v&lt;X.Y.Z&gt;
+gh release delete v&lt;X.Y.Z&gt; --yes
 </pre></li>
 <li>Remove the broken documentation from <code>gh-pages</code>: <pre class="fragment">git checkout gh-pages
 git pull --rebase origin gh-pages
-git rm -r v/0.4.0
-git commit -m "Remove docs for broken v0.4.0"
+git rm -r v/0.3.8
+git commit -m "Remove docs for broken v&lt;X.Y.Z&gt;"
 git push origin gh-pages
 git checkout main
 </pre> </li>
